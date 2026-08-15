@@ -1,0 +1,77 @@
+@use 'sass:list';
+
+/* 供应商标签 10 色色板（无红色），与 utils/supplier-tag.ts 的 c1~c10 对应 */
+$supplier-tag-colors: (
+  c1: (
+    #c2410c,
+    #fff7ed,
+    #fed7aa
+  ),
+  c2: (
+    #15803d,
+    #dcfce7,
+    #bbf7d0
+  ),
+  c3: (
+    #0369a1,
+    #e0f2fe,
+    #bae6fd
+  ),
+  c4: (
+    #7e22ce,
+    #f3e8ff,
+    #e9d5ff
+  ),
+  c5: (
+    #0f766e,
+    #ccfbf1,
+    #99f6e4
+  ),
+  c6: (
+    #4338ca,
+    #e0e7ff,
+    #c7d2fe
+  ),
+  c7: (
+    #be185d,
+    #fce7f3,
+    #fbcfe8
+  ),
+  c8: (
+    #0e7490,
+    #cffafe,
+    #a5f3fc
+  ),
+  c9: (
+    #4d7c0f,
+    #ecfccb,
+    #d9f99d
+  ),
+  c10: (
+    #a16207,
+    #fef9c3,
+    #fde68a
+  )
+);
+
+.supplier-tag {
+  display: inline-block;
+  flex-shrink: 0;
+  max-width: 100%;
+  padding: 0 6px;
+  overflow: hidden;
+  font-size: 12px;
+  line-height: 18px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  border-radius: 4px;
+
+  @each $name, $c in $supplier-tag-colors {
+    &--#{$name} {
+      color: list.nth($c, 1);
+      background-color: list.nth($c, 2);
+      border-color: list.nth($c, 3);
+    }
+  }
+}

@@ -1,0 +1,203 @@
+@use '@styles/variables.scss' as *;
+
+.art-table {
+  position: relative;
+  height: 100%;
+
+  &.no-border {
+    & > div {
+      margin-top: 0;
+    }
+
+    :deep(th.el-table__cell) {
+      padding: 6px 0;
+      background: #fff !important;
+      border-color: #fff;
+      border-top: 1px solid #ebeef5 !important;
+      border-bottom: 1px solid #ebeef5;
+
+      .cell {
+        border-right: 1px solid #ebeef5;
+      }
+    }
+
+    :deep(
+      .el-table.is-scrolling-left.el-table--border
+        .el-table-fixed-column--left.is-last-column.el-table__cell
+    ) {
+      border-right: 1px solid transparent;
+    }
+
+    :deep(th.parent-children-table-selection-column) {
+      .cell {
+        border-right: 1px solid #fff;
+      }
+    }
+
+    :deep(th.parent-children-table-selection-column + th .cell) {
+      border-left: 1px solid #ebeef5;
+    }
+
+    :deep(tr td) {
+      border-right-color: #fff;
+      border-left-color: #fff;
+    }
+  }
+
+  .el-table {
+    height: 100%;
+    margin-top: 10px;
+  }
+
+  // 合计行置顶：inner-wrapper 本身是 flex 纵向布局（body 为 flex:1，header/footer 为 flex-shrink:0），
+  // 仅通过 order 把合计行(footer-wrapper)排到表头下方、表体上方，即可随表头固定在顶部，且不影响原有高度计算。
+  &.summary-top {
+    :deep(.el-table__header-wrapper) {
+      order: 1;
+    }
+
+    :deep(.el-table__footer-wrapper) {
+      // 置顶后 footer 底边会被表体盖住，抬高层级并强制画出底部分隔线
+      position: relative;
+      z-index: 2;
+      order: 2;
+
+      td.el-table__cell {
+        border-bottom: 1px solid var(--el-table-border-color, #ebeef5) !important;
+      }
+    }
+
+    :deep(.el-table__body-wrapper) {
+      order: 3;
+    }
+  }
+
+  :deep(.el-loading-mask) {
+    z-index: 100;
+    background-color: var(--art-main-bg-color) !important;
+  }
+
+  // Loading 过渡动画 - 消失时淡出
+  .loading-fade-leave-active {
+    transition: opacity 0.3s ease-out;
+  }
+
+  .loading-fade-leave-to {
+    opacity: 0;
+  }
+
+  // 空状态垂直居中
+  &.is-empty {
+    :deep(.el-scrollbar__wrap) {
+      display: flex;
+    }
+  }
+
+  // 文本溢出省略样式 - 当列设置了 ellipsis: true 时，通过类名控制文本溢出显示省略号
+  :deep(.cell-ellipsis) {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  // 复制样式 - 当列设置了 copy: true 时，单元格可点击复制
+  :deep(.cell-copy) {
+    display: block !important;
+    padding: 2px 4px;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 2px;
+    transition: color 0.2s;
+
+    &:hover {
+      color: var(--el-color-primary);
+      background-color: var(--el-fill-color-lighter);
+    }
+
+    &:active {
+      background-color: var(--el-fill-color);
+    }
+  }
+
+  .pagination {
+    display: flex;
+    gap: 6px 0;
+    margin-top: 13px;
+
+    :deep(.el-select) {
+      width: 102px !important;
+    }
+
+    &.sticky-footer {
+      position: sticky;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 5;
+      padding: 8px 0;
+      background: var(--art-main-bg-color);
+      border-top: 1px solid var(--art-gray-200);
+    }
+
+    // 分页对齐方式
+    &.left {
+      justify-content: flex-start;
+    }
+
+    &.center {
+      justify-content: center;
+    }
+
+    &.right {
+      justify-content: flex-end;
+    }
+
+    // 自定义分页组件样式
+    &.custom-pagination {
+      :deep(.el-pagination) {
+        .btn-prev,
+        .btn-next {
+          background-color: transparent;
+          border: 1px solid var(--art-gray-300);
+          transition: border-color 0.15s;
+
+          &:hover:not(.is-disabled) {
+            color: var(--main-color);
+            border-color: var(--main-color);
+          }
+        }
+
+        li {
+          box-sizing: border-box;
+          font-weight: 400 !important;
+          background-color: transparent;
+          border: 1px solid var(--art-gray-300);
+          transition: border-color 0.15s;
+
+          &.is-active {
+            font-weight: 400;
+            color: #fff;
+            background-color: var(--main-color);
+            border: 1px solid var(--main-color);
+          }
+
+          &:hover:not(.is-disabled) {
+            border-color: var(--main-color);
+          }
+        }
+      }
+    }
+  }
+}
+
+// // 移动端分页
+// @media (max-width: $device-phone) {
+//   :deep(.el-pagination) {
+//     display: flex;
+//     flex-wrap: wrap;
+//     gap: 15px 0;
+//     align-items: center;
+//     justify-content: center;
+//   }
+// }

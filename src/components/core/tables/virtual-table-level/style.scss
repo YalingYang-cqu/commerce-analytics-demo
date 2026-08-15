@@ -1,0 +1,180 @@
+.virtual-table-level {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+
+  &__table-area {
+    flex: 1 1 auto;
+    min-width: 0;
+    min-height: 200px;
+    overflow: hidden;
+  }
+
+  &.is-empty {
+    :deep(.vxe-table--empty-content) {
+      min-height: 120px;
+    }
+  }
+
+  :deep(.cell-ellipsis) {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  :deep(.cell-copy) {
+    display: block !important;
+    padding: 2px 4px;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 2px;
+    transition: color 0.2s;
+
+    &:hover {
+      color: var(--el-color-primary);
+      background-color: var(--el-fill-color-lighter);
+    }
+
+    &:active {
+      background-color: var(--el-fill-color);
+    }
+  }
+
+  .virtual-level-vxe-grid {
+    margin-top: 10px;
+  }
+
+  /**
+   * 固定列与主表体是两套 tbody，若对 td / .vxe-cell 强设 height:auto，
+   * 两侧行高计算不一致会出现勾选列、操作列与数据行错位。
+   * 只保留 padding / line-height / 垂直对齐，由表格统一行高。
+   */
+  :deep(.virtual-level-vxe-grid .vxe-body--row .vxe-body--column) {
+    vertical-align: middle;
+  }
+
+  :deep(.virtual-level-vxe-grid .vxe-body--row td) {
+    vertical-align: middle;
+  }
+
+  :deep(.virtual-level-vxe-grid .vxe-cell) {
+    box-sizing: border-box;
+    padding: 4px 8px !important;
+    line-height: 1.45 !important;
+    word-break: break-word;
+    white-space: normal;
+  }
+
+  :deep(.virtual-level-vxe-grid .vt-cell-center) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 32px;
+  }
+
+  :deep(.virtual-level-vxe-grid .vt-cell-center .el-checkbox) {
+    height: auto !important;
+  }
+
+  :deep(.vxe-table--header-inner-wrapper) {
+    min-height: 32px !important;
+  }
+
+  :deep(.vxe-header--row) {
+    th {
+      vertical-align: middle;
+    }
+
+    .vxe-cell {
+      min-height: 32px !important;
+      padding: 4px 8px !important;
+
+      .vxe-header-cell--wrapper {
+        min-height: 32px !important;
+        line-height: 1.35;
+      }
+    }
+  }
+
+  :deep(.virtual-level-vxe-grid .vxe-body--row) {
+    transition: background-color 0.2s ease;
+  }
+
+  :deep(.virtual-level-vxe-grid .vxe-body--row.row--hover),
+  :deep(.virtual-level-vxe-grid .vxe-body--row:hover) {
+    background-color: #f5f7fa !important;
+  }
+
+  .pagination {
+    display: flex;
+    flex-shrink: 0;
+    gap: 6px 0;
+    margin-top: 13px;
+
+    :deep(.el-select) {
+      width: 102px !important;
+    }
+
+    &.sticky-footer {
+      position: sticky;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 5;
+      padding: 8px 0;
+      background: var(--art-main-bg-color);
+      border-top: 1px solid var(--art-gray-200);
+    }
+
+    &.left {
+      justify-content: flex-start;
+    }
+
+    &.center {
+      justify-content: center;
+    }
+
+    &.right {
+      justify-content: flex-end;
+    }
+
+    &.custom-pagination {
+      :deep(.el-pagination) {
+        .btn-prev,
+        .btn-next {
+          background-color: transparent;
+          border: 1px solid var(--art-gray-300);
+          transition: border-color 0.15s;
+
+          &:hover:not(.is-disabled) {
+            color: var(--main-color);
+            border-color: var(--main-color);
+          }
+        }
+
+        li {
+          box-sizing: border-box;
+          font-weight: 400 !important;
+          background-color: transparent;
+          border: 1px solid var(--art-gray-300);
+          transition: border-color 0.15s;
+
+          &.is-active {
+            font-weight: 400;
+            color: #fff;
+            background-color: var(--main-color);
+            border: 1px solid var(--main-color);
+          }
+
+          &:hover:not(.is-disabled) {
+            border-color: var(--main-color);
+          }
+        }
+      }
+    }
+  }
+}

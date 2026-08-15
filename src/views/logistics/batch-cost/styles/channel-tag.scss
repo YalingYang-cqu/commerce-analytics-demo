@@ -1,0 +1,24 @@
+@use 'sass:list';
+@use 'channel-tag-vars' as ctc;
+
+.channel-tag {
+  display: inline-block;
+  flex-shrink: 0;
+  max-width: 100%;
+  padding: 0 6px;
+  overflow: hidden;
+  font-size: 12px;
+  line-height: 18px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  border-radius: 4px;
+
+  @each $name, $c in ctc.$channel-tag-colors {
+    &--#{$name} {
+      color: list.nth($c, 1);
+      background-color: list.nth($c, 2);
+      border-color: list.nth($c, 3);
+    }
+  }
+}

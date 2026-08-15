@@ -1,0 +1,28 @@
+@font-face {
+  font-family: 'iconfont'; /* Project id  */
+  src: url('iconfont.ttf?t=1718242941236') format('truetype');
+}
+
+.iconfont {
+  font-family: 'iconfont' !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-qingchu:before {
+  content: '\e7e9';
+}
+
+.icon-xuanfu-guding:before {
+  content: '\e687';
+}
+
+.icon-quxiaoguding:before {
+  content: '\e507';
+}
+
+.icon-arrow_xiangshangzhiding:before {
+  content: '\e989';
+}

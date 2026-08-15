@@ -1,0 +1,9 @@
+{
+  // 纯静态站点：无 Worker 脚本，只上传 Vite 构建产物
+  "name": "cost",
+  "compatibility_date": "2026-08-01",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "single-page-application"
+  }
+}

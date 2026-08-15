@@ -1,0 +1,10 @@
+# 非 monorepo，但 pnpm 9/10 一旦发现本文件就进入 workspace 模式并要求 packages
+packages:
+  - '.'
+
+allowBuilds:
+  '@parcel/watcher': false
+  core-js: false
+  es5-ext: false
+  esbuild: false
+  vue-demi: false

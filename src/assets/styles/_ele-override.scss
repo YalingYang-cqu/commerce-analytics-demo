@@ -1,0 +1,1150 @@
+// ==========================================
+// Element Plus 全局样式覆盖
+// 使用 .qp-page 类来应用统一样式规范
+// ==========================================
+
+// ==========================================
+// 1. 页面布局基础样式
+// ==========================================
+.qp-page {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 60px);
+  overflow: hidden;
+  background: #f5f7fa;
+
+  // 页面头部
+  .page-header {
+    z-index: 10;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    background: #fff;
+    border-bottom: 1px solid #e4e7ed;
+
+    h2 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 500;
+      color: #303133;
+    }
+
+    .header-left {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+
+      .header-title {
+        display: flex;
+        gap: 12px;
+        align-items: center;
+
+        h2 {
+          margin: 0;
+          font-size: 18px;
+          font-weight: 500;
+        }
+      }
+    }
+
+    .header-right {
+      display: flex;
+      gap: 8px;
+    }
+  }
+
+  // 页面主内容区
+  .page-content {
+    flex: 1;
+    min-height: 0;
+    padding: 16px 20px;
+    overflow: auto;
+    background: #f5f7fa;
+
+    // 滚动条样式
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+      background-color: #f5f7fa;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #c0c4cc;
+      border-radius: 4px;
+
+      &:hover {
+        background-color: #909399;
+      }
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: #f5f7fa;
+      border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-corner {
+      background-color: #f5f7fa;
+    }
+  }
+
+  // 页面底部（固定底部操作栏）
+  .page-footer {
+    z-index: 10;
+    display: flex;
+    flex-shrink: 0;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 20px;
+    background: #fff;
+    border-top: 1px solid #e4e7ed;
+  }
+}
+
+// ==========================================
+// 2. 卡片样式覆盖
+// ==========================================
+.qp-page {
+  .el-card {
+    border: none;
+    border-radius: 4px;
+    box-shadow: none;
+
+    &.section-card,
+    &.form-section {
+      margin-bottom: 16px;
+      background-color: #fff;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    // 详情页信息卡片（使用 ElDescriptions）
+    &.section-card {
+      .el-card__body {
+        padding: 0;
+
+        // ElDescriptions 直接放在卡片内时移除外边距
+        > .el-descriptions {
+          margin: 0;
+        }
+      }
+    }
+
+    // 表单卡片（使用 form-table）
+    &.form-section {
+      .el-card__body {
+        padding: 0;
+      }
+    }
+  }
+
+  // 卡片间距控制
+  .card-m {
+    margin-bottom: 12px;
+  }
+}
+
+// ==========================================
+// 3. 表单表格布局样式（与 ElDescriptions border 样式完全一致）
+// ==========================================
+.qp-page {
+  .form-section {
+    .el-card__body {
+      padding: 0;
+    }
+  }
+
+  // 表单表格 - 与 ElDescriptions border 样式完全保持一致
+  .form-table {
+    overflow: hidden;
+    font-size: 14px;
+    background-color: #fff;
+    border: 1px solid #ebeef5;
+    border-radius: 4px;
+
+    .form-table-row {
+      display: flex;
+      border-bottom: 1px solid #ebeef5;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      // 单列行（如：申请理由、附件）
+      &:not(.form-table-row-multi) {
+        .form-table-label {
+          display: flex;
+          flex-shrink: 0;
+          align-items: center;
+          justify-content: flex-end;
+          width: 120px; // 固定宽度，确保对齐
+          min-width: 120px;
+          padding: 8px 12px;
+          font-size: 14px;
+          font-weight: normal;
+          line-height: 23px; // 与详情页一致
+          color: #606266;
+          text-align: right;
+          background-color: #fafafa;
+          border-right: 1px solid #ebeef5;
+
+          // 必填项红色星号
+          &.required::before {
+            margin-right: 4px;
+            font-size: 14px;
+            color: #f56c6c;
+            content: '*';
+          }
+
+          .required-asterisk {
+            margin-right: 4px;
+            color: #f56c6c;
+          }
+        }
+
+        .form-table-content {
+          display: flex;
+          flex: 1;
+          align-items: center;
+          min-height: 39px; // 与详情页一致
+          padding: 0; // 移除padding，让输入框占满
+          line-height: 23px;
+          word-break: break-word;
+
+          &.form-table-content-full {
+            width: 100%;
+          }
+
+          .el-form-item {
+            width: 100%;
+            margin-bottom: 0;
+
+            .el-form-item__content {
+              width: 100%;
+            }
+          }
+
+          // 输入框占满整个单元格 - 移除边框融入表单
+          .el-textarea,
+          .el-input,
+          .mk-select,
+          .el-select {
+            width: 100%;
+
+            .el-textarea__inner,
+            .el-input__wrapper,
+            .el-select__wrapper {
+              border: none !important;
+              border-radius: 0 !important;
+              box-shadow: none !important;
+              outline: none !important;
+              background-color: transparent !important;
+            }
+
+            // 移除 focus 状态的边框
+            &.is-focus,
+            &:focus-within {
+              .el-input__wrapper,
+              .el-select__wrapper {
+                border: none !important;
+                box-shadow: none !important;
+                outline: none !important;
+              }
+            }
+          }
+
+          // textarea 特殊处理 - 占满并移除边框
+          .el-textarea {
+            .el-textarea__inner {
+              padding: 8px 12px;
+              resize: none;
+              background-color: transparent !important;
+
+              &:focus {
+                border: none !important;
+                box-shadow: none !important;
+                outline: none !important;
+              }
+            }
+          }
+
+          // select 和 input 特殊处理
+          .el-select,
+          .el-input,
+          .mk-select {
+            .el-input__wrapper,
+            .el-select__wrapper {
+              padding: 4px 12px;
+            }
+          }
+
+          // mk-select 特殊处理
+          .mk-select {
+            .el-select {
+              .el-select__wrapper {
+                border: none !important;
+                box-shadow: none !important;
+                outline: none !important;
+                background-color: transparent !important;
+              }
+            }
+          }
+        }
+      }
+
+      // 多列行（如：单据负责人 + 单据备注）
+      &.form-table-row-multi {
+        .form-table-cell {
+          display: flex;
+          flex: 1;
+          border-right: 1px solid #ebeef5;
+
+          &:last-child {
+            border-right: none;
+          }
+
+          .form-table-label {
+            display: flex;
+            flex-shrink: 0;
+            align-items: center;
+            justify-content: flex-end;
+            width: 120px; // 与单列行保持一致，确保对齐
+            min-width: 120px;
+            padding: 8px 12px;
+            font-size: 14px;
+            font-weight: normal;
+            line-height: 23px;
+            color: #606266;
+            text-align: right;
+            background-color: #fafafa;
+            border-right: 1px solid #ebeef5;
+
+            // 必填项红色星号
+            &.required::before {
+              margin-right: 4px;
+              font-size: 14px;
+              color: #f56c6c;
+              content: '*';
+            }
+          }
+
+          .form-table-content {
+            display: flex;
+            flex: 1;
+            align-items: center;
+            min-height: 39px;
+            padding: 0; // 移除padding，让输入框占满
+            line-height: 23px;
+            word-break: break-word;
+
+            .el-form-item {
+              width: 100%;
+              margin-bottom: 0;
+
+              .el-form-item__content {
+                width: 100%;
+              }
+            }
+
+            // 输入框占满整个单元格 - 移除边框融入表单
+            .el-textarea,
+            .el-input,
+            .mk-select,
+            .el-select {
+              width: 100%;
+
+              .el-textarea__inner,
+              .el-input__wrapper,
+              .el-select__wrapper {
+                border: none !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                outline: none !important;
+                background-color: transparent !important;
+              }
+
+              // 移除 focus 状态的边框
+              &.is-focus,
+              &:focus-within {
+                .el-input__wrapper,
+                .el-select__wrapper {
+                  border: none !important;
+                  box-shadow: none !important;
+                  outline: none !important;
+                }
+              }
+            }
+
+            .el-textarea {
+              .el-textarea__inner {
+                padding: 8px 12px;
+                resize: none;
+                background-color: transparent !important;
+
+                &:focus {
+                  border: none !important;
+                  box-shadow: none !important;
+                  outline: none !important;
+                }
+              }
+            }
+
+            .el-select,
+            .el-input,
+            .mk-select {
+              .el-input__wrapper,
+              .el-select__wrapper {
+                padding: 4px 12px;
+              }
+            }
+
+            // mk-select 特殊处理
+            .mk-select {
+              .el-select {
+                .el-select__wrapper {
+                  border: none !important;
+                  box-shadow: none !important;
+                  outline: none !important;
+                  background-color: transparent !important;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      // 附件行特殊处理 - 减少上下间距
+      &.form-table-row--attachment {
+        .form-table-content {
+          padding: 8px 12px !important;
+        }
+      }
+    }
+  }
+
+  // 统一 ElDescriptions 样式，确保与 form-table 一致
+  .el-descriptions {
+    &.is-bordered {
+      .el-descriptions__label {
+        min-width: 100px;
+        font-weight: normal; // 与 form-table 一致，不加粗
+        color: #606266;
+        background-color: #fafafa;
+      }
+
+      .el-descriptions__content {
+        color: #303133;
+      }
+    }
+  }
+}
+
+// ==========================================
+// 4. 产品工具栏样式
+// ==========================================
+.qp-page {
+  .product-toolbar {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+  }
+}
+
+// ==========================================
+// 5. 标签页样式覆盖
+// ==========================================
+.qp-page {
+  // 大标签页（状态切换）
+  .el-tabs.big {
+    padding: 0 20px;
+    background: #fff;
+    border-radius: 4px;
+
+    .el-tabs__header {
+      margin: 0;
+    }
+
+    .el-tabs__nav-wrap::after {
+      display: none;
+    }
+
+    .el-tabs__item {
+      height: 48px;
+      font-size: 14px;
+      line-height: 48px;
+    }
+  }
+
+  // 常规标签页
+  .el-tabs {
+    .el-tabs__header {
+      margin-bottom: 16px;
+    }
+  }
+}
+
+// ==========================================
+// 6. 表格样式覆盖
+// ==========================================
+.qp-page {
+  .el-table {
+    // 图片占位
+    .no-image {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      font-size: 12px;
+      color: #909399;
+      background: #f5f7fa;
+      border-radius: 4px;
+    }
+
+    // 合计行样式
+    .el-table__footer-wrapper {
+      font-weight: 500;
+    }
+  }
+
+  // 表格汇总信息
+  .table-summary {
+    padding: 12px;
+    margin-top: 16px;
+    font-weight: 500;
+    color: #e6a23c;
+    text-align: right;
+    background: #fdf6ec;
+    border-radius: 4px;
+  }
+
+  // 选中信息提示
+  .selected-info {
+    margin-left: 12px;
+    font-size: 14px;
+    color: #606266;
+  }
+
+  // 操作按钮容器 - 确保按钮在同一行
+  .operation-btns {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+  }
+}
+
+// ==========================================
+// 7. 表单验证错误样式
+// ==========================================
+.qp-page {
+  .is-error {
+    .el-input__wrapper {
+      border-color: var(--el-color-error) !important;
+    }
+
+    .el-input__inner {
+      color: var(--el-color-error) !important;
+    }
+  }
+
+  .el-date-editor.is-error {
+    border-color: var(--el-color-error) !important;
+  }
+}
+
+// ==========================================
+// 8. 附件和上传样式
+// ==========================================
+.qp-page {
+  .attachment-field {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+
+    .attachment-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      align-items: center;
+    }
+
+    .attachment-link {
+      display: inline-flex;
+      gap: 4px;
+      align-items: center;
+      color: #409eff;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+// ==========================================
+// 9. 描述列表样式覆盖（与 form-table 保持一致）
+// ==========================================
+.qp-page {
+  .el-descriptions {
+    // 确保有边框样式时与 form-table 一致
+    &.is-bordered {
+      .el-descriptions__body {
+        border-radius: 4px;
+      }
+
+      .el-descriptions__table {
+        border-collapse: separate;
+        border-spacing: 0;
+      }
+    }
+
+    .el-descriptions__label {
+      min-width: 100px;
+      font-weight: normal; // 与详情页保持一致
+      color: #606266;
+      background-color: #fafafa;
+    }
+
+    .el-descriptions__content {
+      color: #303133;
+    }
+
+    // 带边框时的单元格样式
+    &.is-bordered .el-descriptions__cell {
+      padding: 12px 12px;
+    }
+  }
+
+  .editable-field {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+
+    > span {
+      flex: 1;
+    }
+  }
+
+  .purchase-order-link {
+    color: #409eff;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// ==========================================
+// 10. 步骤条样式覆盖（工作流）
+// ==========================================
+.qp-page {
+  .qp-card {
+    &.el-card {
+      overflow: visible !important;
+
+      .el-card__body {
+        margin: 0;
+        padding: 0;
+        overflow: visible !important;
+      }
+    }
+  }
+}
+
+.qp-card {
+  &.el-card {
+    overflow: visible !important;
+
+    .el-card__body {
+      margin: 0;
+      padding: 0;
+      overflow: visible !important;
+
+      // .el-steps {
+      //   display: flex !important;
+      //   flex-direction: row !important;
+      //   width: 100%;
+      //   height: 150px;
+      //   overflow-x: hidden !important;
+      //   overflow-y: visible !important;
+      //   .el-step {
+      //     position: relative !important;
+      //     display: flex !important;
+      //     flex: 1 1 20% !important;
+      //     flex-direction: row !important;
+      //     align-items: flex-start !important;
+      //     min-width: 20% !important;
+      //     overflow: visible !important;
+
+      //     .el-step__head {
+      //       position: relative !important;
+      //       flex-shrink: 0 !important;
+      //       order: 1 !important;
+      //       display: flex !important;
+      //       flex-direction: column !important;
+      //       align-items: center !important;
+      //       width: auto !important;
+      //       margin-right: 12px !important;
+
+      //       // 隐藏 Element Plus 原本的步骤线（使用自定义的 ::after 线条）
+      //       .el-step__line {
+      //         display: none !important;
+      //       }
+
+      //       .el-step__icon {
+      //         position: static !important;
+      //         margin-right: 0 !important;
+      //         margin-bottom: 0 !important;
+      //         background-color: unset !important;
+      //       }
+      //     }
+
+      //     .el-step__main {
+      //       position: relative !important;
+      //       flex: 0 1 auto !important;
+      //       order: 2 !important;
+      //       min-width: 0;
+      //       max-width: fit-content !important;
+      //       margin-top: 0 !important;
+      //       margin-left: 0 !important;
+      //       padding-right: 0;
+      //       overflow: visible !important;
+      //       text-align: left !important;
+      //       word-wrap: break-word;
+      //       overflow-wrap: break-word;
+
+      //       &::after {
+      //         position: absolute;
+      //         top: 16px;
+      //         left: 100%;
+      //         z-index: 0;
+      //         width: var(--step-line-width, 0px);
+      //         height: 2px;
+      //         margin-left: 8px;
+      //         pointer-events: none;
+      //         content: '' !important;
+      //         background-color: #e4e7ed;
+      //       }
+
+      //       .el-step__title {
+      //         position: relative;
+      //         z-index: 1;
+      //         margin-bottom: 4px;
+      //       }
+
+      //       .el-step__description {
+      //         position: absolute !important;
+      //         top: 100% !important;
+      //         left: 0 !important;
+      //         z-index: 10 !important;
+      //         min-width: 200px !important;
+      //         max-width: 300px !important;
+      //         margin-top: 4px !important;
+      //         padding: 0;
+      //         visibility: visible !important;
+      //         white-space: normal !important;
+      //         text-align: left !important;
+      //         word-wrap: break-word !important;
+      //         opacity: 1 !important;
+      //       }
+      //     }
+      //   }
+
+      //   // 连接线统一使用默认灰色，只有图标和字体变色
+      //   .el-step:not(:last-child) .el-step__main::after {
+      //     background-color: #e4e7ed !important;
+      //   }
+
+      //   .el-step:last-child .el-step__main::after {
+      //     display: none !important;
+      //   }
+      // }
+    }
+  }
+}
+
+// ==========================================
+// 11. 步骤描述样式
+// ==========================================
+// .qp-page {
+//   .step-description {
+//     display: flex;
+//     flex-direction: row;
+//     gap: 4px 6px;
+//     font-size: 12px;
+//     line-height: 1em;
+
+//     &:has(.step-remark) {
+//       flex-direction: column;
+//       gap: 4px;
+//     }
+
+//     .step-operator {
+//       margin-bottom: 0;
+//       color: #303133;
+//     }
+
+//     &:has(.step-remark) .step-operator {
+//       margin-bottom: 4px;
+//     }
+
+//     .step-time {
+//       margin-bottom: 0;
+//       color: #909399;
+//     }
+
+//     &:has(.step-remark) .step-time {
+//       margin: 0;
+//     }
+
+//     .step-remark {
+//       width: 100%;
+//       margin-top: 4px;
+//       color: #606266;
+//       text-align: left;
+//     }
+//   }
+
+//   // Steps padding
+//   .el-steps {
+//     padding: 20px 0;
+
+//     .el-step__head {
+//       .el-step__icon {
+//         width: 32px;
+//         height: 32px;
+//         font-size: 14px;
+//       }
+
+//       &.is-success .el-step__icon {
+//         background-color: #67c23a;
+//         border-color: #67c23a;
+//       }
+
+//       &.is-process .el-step__icon {
+//         background-color: #409eff;
+//         border-color: #409eff;
+//       }
+
+//       &.is-error .el-step__icon {
+//         background-color: #f56c6c;
+//         border-color: #f56c6c;
+//       }
+//     }
+
+//     .el-step__title {
+//       font-size: 14px;
+//       font-weight: 500;
+//       color: #303133;
+
+//       &.is-process {
+//         font-weight: 500;
+//         color: #409eff;
+//       }
+
+//       &.is-success {
+//         color: #67c23a;
+//       }
+
+//       &.is-error {
+//         color: #f56c6c;
+//       }
+//     }
+
+//     .el-step__description {
+//       padding-right: 0;
+//       margin-top: 8px;
+//     }
+//   }
+// }
+
+// ==========================================
+// 12. 上传组件和附件列表样式
+// ==========================================
+.attachment-content,
+.label-material-content {
+  .upload-section {
+    margin-bottom: 20px;
+
+    .upload-tip {
+      margin-top: 8px;
+      font-size: 12px;
+      line-height: 1.5;
+      color: #909399;
+    }
+  }
+
+  .attachment-list {
+    .attachment-item {
+      display: flex;
+      align-items: center;
+      padding: 12px;
+      margin-bottom: 8px;
+      border: 1px solid #e4e7ed;
+      border-radius: 4px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      .file-icon {
+        margin-right: 12px;
+        font-size: 24px;
+        color: #409eff;
+      }
+
+      .file-name {
+        flex: 1;
+        overflow: hidden;
+        color: #303133;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        cursor: pointer;
+
+        &:hover {
+          color: #409eff;
+          text-decoration: underline;
+        }
+      }
+
+      .file-size {
+        margin: 0 12px;
+        font-size: 12px;
+        color: #909399;
+      }
+
+      .file-actions {
+        display: flex;
+        gap: 8px;
+      }
+    }
+  }
+
+  .empty-attachment {
+    padding: 40px 0;
+    text-align: center;
+  }
+}
+
+// ==========================================
+// 13. 列表页特有样式
+// ==========================================
+.qp-page {
+  &.qp-page--list {
+    // 列表页使用全高度
+    height: 100%;
+
+    // 状态标签页
+    > .el-tabs.big {
+      flex-shrink: 0;
+    }
+  }
+}
+
+// ==========================================
+// 14. Select 下拉框全局样式（弹出层不在 .qp-page 内）
+// ==========================================
+.el-select-dropdown {
+  // 移除搜索输入框的下划线边框
+  .el-select-dropdown__wrap {
+    .el-input {
+      .el-input__wrapper {
+        border: none !important;
+        box-shadow: none !important;
+        outline: none !important;
+
+        &::after {
+          display: none !important;
+        }
+      }
+
+      // 移除下划线
+      &::after,
+      .el-input__wrapper::after {
+        display: none !important;
+        border: none !important;
+      }
+    }
+  }
+
+  // 搜索框样式
+  .el-select-dropdown__header {
+    .el-input {
+      .el-input__wrapper {
+        border: none !important;
+        box-shadow: none !important;
+
+        &::after {
+          display: none !important;
+        }
+      }
+    }
+  }
+}
+
+// mk-select 弹出层：去掉搜索框多余边框（字号见 mk-select 组件内 .mk-select-dropdown）
+.el-select__popper {
+  .el-select-dropdown__wrap {
+    .el-input__wrapper {
+      border: none !important;
+      box-shadow: none !important;
+
+      &::after {
+        display: none !important;
+      }
+    }
+  }
+}
+// 表头背景色
+:deep(.el-table__header) {
+  th {
+    background-color: #f5f7fa !important;
+  }
+}
+
+// ==========================================
+// 15. 滚动条样式覆盖
+// ==========================================
+// 全局滚动条基础样式
+::-webkit-scrollbar {
+  width: 8px !important;
+  height: 10px !important;
+}
+
+::-webkit-scrollbar-button {
+  height: 10px !important;
+  width: 10px !important;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 5px !important;
+  transition: all 0.2s;
+  -webkit-transition: all 0.2s;
+}
+
+// qp-page 内 qp-scroll 类强制显示滚动条
+.qp-page {
+  .qp-scroll {
+    overflow: auto !important;
+
+    // 滚动条轨道
+    &::-webkit-scrollbar {
+      width: 8px !important;
+      height: 8px !important;
+      background-color: #f5f7fa !important;
+    }
+
+    // 滚动条滑块
+    &::-webkit-scrollbar-thumb {
+      background-color: #c0c4cc !important;
+      border-radius: 4px !important;
+
+      &:hover {
+        background-color: #909399 !important;
+      }
+    }
+
+    // 滚动条轨道背景
+    &::-webkit-scrollbar-track {
+      background-color: #f5f7fa !important;
+      border-radius: 4px !important;
+    }
+
+    // 滚动条角落
+    &::-webkit-scrollbar-corner {
+      background-color: #f5f7fa !important;
+    }
+  }
+
+  // 横向滚动条
+  .qp-scroll-x {
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+
+    &::-webkit-scrollbar {
+      height: 8px !important;
+      background-color: #f5f7fa !important;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #c0c4cc !important;
+      border-radius: 4px !important;
+
+      &:hover {
+        background-color: #909399 !important;
+      }
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: #f5f7fa !important;
+      border-radius: 4px !important;
+    }
+  }
+
+  // 纵向滚动条
+  .qp-scroll-y {
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+
+    &::-webkit-scrollbar {
+      width: 8px !important;
+      background-color: #f5f7fa !important;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #c0c4cc !important;
+      border-radius: 4px !important;
+
+      &:hover {
+        background-color: #909399 !important;
+      }
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: #f5f7fa !important;
+      border-radius: 4px !important;
+    }
+  }
+}
+
+// 通用链接文本样式
+.link-text {
+  color: #409eff;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+.image-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  color: var(--el-text-color-placeholder);
+  background-color: var(--el-fill-color-lighter);
+  border-radius: 4px;
+}
+
+// ==========================================
+// micro-app 子应用：抵消弹窗 lock-scroll 对 body 的污染
+// ==========================================
+// Element Plus 的弹窗/抽屉打开时会给 document.body 加 .el-popup-parent--hidden
+// (overflow: hidden) 并写行内 width。子应用里 document.body 被沙箱代理成
+// <micro-app-body>，它一旦有 overflow 就成为 sticky 元素的滚动容器，页面吸顶的
+// Tab / 搜索栏会被下推各自 top 的距离，表现为内容整体下移。
+// 子应用的滚动条在基座上，这里本来也锁不住，直接抵消。
+// 独立运行时没有该标签，规则天然不生效。
+micro-app-body.el-popup-parent--hidden {
+  width: auto !important;
+  overflow: visible !important;
+}

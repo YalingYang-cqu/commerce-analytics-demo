@@ -1,0 +1,75 @@
+.art-table-new {
+  :deep(.mk-table) {
+    border: 0 solid #e4e7ed !important;
+  }
+
+  .pagination {
+    display: flex;
+    gap: 6px 0;
+    margin-top: 13px;
+
+    :deep(.el-select) {
+      width: 102px !important;
+    }
+
+    &.sticky-footer {
+      position: sticky;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 5;
+      padding: 8px 0;
+      background: var(--art-main-bg-color);
+      border-top: 1px solid var(--art-gray-200);
+    }
+
+    // 分页对齐方式
+    &.left {
+      justify-content: flex-start;
+    }
+
+    &.center {
+      justify-content: center;
+    }
+
+    &.right {
+      justify-content: flex-end;
+    }
+
+    // 自定义分页组件样式
+    &.custom-pagination {
+      :deep(.el-pagination) {
+        .btn-prev,
+        .btn-next {
+          background-color: transparent;
+          border: 1px solid var(--art-gray-300);
+          transition: border-color 0.15s;
+
+          &:hover:not(.is-disabled) {
+            color: var(--main-color);
+            border-color: var(--main-color);
+          }
+        }
+
+        li {
+          box-sizing: border-box;
+          font-weight: 400 !important;
+          background-color: transparent;
+          border: 1px solid var(--art-gray-300);
+          transition: border-color 0.15s;
+
+          &.is-active {
+            font-weight: 400;
+            color: #fff;
+            background-color: var(--main-color);
+            border: 1px solid var(--main-color);
+          }
+
+          &:hover:not(.is-disabled) {
+            border-color: var(--main-color);
+          }
+        }
+      }
+    }
+  }
+}

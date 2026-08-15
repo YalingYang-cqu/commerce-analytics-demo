@@ -1,0 +1,293 @@
+@use '@styles/variables.scss' as *;
+
+.worktab {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 20px;
+  margin-bottom: 12px;
+  user-select: none;
+
+  .scroll-view {
+    width: 100%;
+    overflow: hidden;
+
+    .tabs {
+      float: left;
+      white-space: nowrap;
+      background: transparent !important;
+
+      .tab-item + .tab-item::before {
+        position: absolute;
+        top: 50%;
+        left: -1px;
+        width: 0;
+        height: 28px;
+        content: '';
+        border-left: 1px solid #e6e6e6;
+        transform: translateY(-50%);
+      }
+
+      li {
+        &.tab-item {
+          // display: flex;
+          // align-items: center;
+          // justify-content: center;
+          position: relative;
+          display: inline-block;
+          height: 50px;
+          padding: 0 16px;
+          margin-top: 14px;
+          font-size: 12px;
+          line-height: 50px;
+          color: #000;
+          text-align: center;
+          cursor: pointer;
+          background: #f5f5f5;
+        }
+
+        &:first-child {
+          &.activ-tab {
+            &::before {
+              top: calc(100% - 4px) !important;
+            }
+          }
+        }
+
+        &.activ-tab {
+          font-weight: 700 !important;
+          color: var(--main-color) !important;
+          background: #fff !important;
+          border: 1px solid #e6e6e6 !important;
+          border-bottom: none !important;
+          border-radius: 8px 8px 0 0 !important;
+
+          &::after,
+          &::before {
+            position: absolute !important;
+            z-index: 2 !important;
+            width: 16px !important;
+            height: 16px !important;
+            content: '' !important;
+            border: 1px solid #e6e6e6 !important;
+            border-radius: 100% !important;
+            box-shadow: 0 0 0 40px #fff !important;
+            transition: 0.2s !important;
+          }
+
+          &::before {
+            top: calc(100% - 9px) !important;
+            left: -18px !important;
+            clip-path: inset(50% -10px 0 50%) !important;
+          }
+
+          &::after {
+            right: -18px !important;
+            bottom: 0 !important;
+            clip-path: inset(50% 50% 0 -10px) !important;
+          }
+        }
+
+        display: inline-block;
+        height: 32px;
+        // margin-right: 6px;
+        font-size: 13px;
+        line-height: 32px;
+        // color: var(--art-text-gray-600);
+        text-align: center;
+        cursor: pointer;
+        border: 0 solid transparent !important;
+        border-bottom: 1px solid var(--art-card-border) !important;
+        // background: var(--art-main-bg-color);
+        // border: 1px solid transparent;
+        // border-radius: calc(var(--custom-radius) / 2.5 + 2px) !important;
+        transition: color 0.1s;
+
+        &:hover {
+          color: var(--main-color) !important;
+          transition: color 0.2s;
+        }
+
+        i {
+          position: relative;
+          top: 2px;
+          padding: 2px;
+          margin-left: 5px;
+          border-radius: 50%;
+          transition: all 0.2s;
+
+          &:hover {
+            background: rgb(238 238 238 / 100%);
+          }
+        }
+      }
+    }
+  }
+
+  &.tab-card {
+    padding: 4px 20px;
+    border-bottom: 1px solid var(--art-border-color);
+  }
+
+  &.tab-google {
+    padding: 5px 20px 0;
+    border-bottom: 1px solid var(--art-border-color);
+
+    .tabs {
+      padding-left: 5px;
+
+      li {
+        position: relative;
+        height: 37px !important;
+        line-height: 37px !important;
+        border: none !important;
+        border-radius: calc(var(--custom-radius) / 2.5 + 4px) !important;
+
+        .line {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          width: 1px;
+          height: 16px;
+          margin: auto;
+          background: var(--art-border-dashed-color);
+          transition: opacity 0.15s;
+        }
+
+        &:first-child {
+          .line {
+            opacity: 0;
+          }
+        }
+
+        $tab-radius-size: 20px;
+
+        &:hover {
+          box-sizing: border-box;
+          color: var(--art-text-gray-600) !important;
+          background-color: var(--art-gray-200) !important;
+          border-bottom: 1px solid var(--art-main-bg-color) !important;
+          border-radius: calc(var(--custom-radius) / 2.5 + 4px) !important;
+
+          .line {
+            opacity: 0;
+          }
+        }
+
+        &:hover + li .line {
+          opacity: 0;
+        }
+
+        &.activ-tab {
+          color: var(--main-color) !important;
+          background-color: var(--el-color-primary-light-9) !important;
+          border-bottom: 0 !important;
+          border-bottom-right-radius: 0 !important;
+          border-bottom-left-radius: 0 !important;
+
+          &::before,
+          &::after {
+            position: absolute;
+            bottom: 0;
+            width: $tab-radius-size;
+            height: $tab-radius-size;
+            content: '';
+            border-radius: 50%;
+            box-shadow: 0 0 0 30px var(--el-color-primary-light-9);
+            box-shadow: 0 0 0 30px transparent;
+          }
+
+          &::before {
+            left: -$tab-radius-size;
+            clip-path: inset(50% -10px 0 50%);
+          }
+
+          &::after {
+            right: -$tab-radius-size;
+            clip-path: inset(50% 50% 0 -10px);
+          }
+
+          .line {
+            opacity: 0;
+          }
+
+          // 暗黑模式下的激活标签样式
+          .dark & {
+            color: var(--art-gray-800) !important;
+            background-color: var(--art-gray-200) !important;
+
+            &::before,
+            &::after {
+              box-shadow: 0 0 0 30px var(--art-gray-200);
+            }
+          }
+        }
+
+        &.activ-tab + li .line {
+          opacity: 0;
+        }
+
+        i {
+          &:hover {
+            color: var(--art-text-gray-700);
+            background: var(--art-gray-300);
+          }
+        }
+      }
+    }
+  }
+
+  .right {
+    display: flex;
+    // border: 1px solid red;
+    margin-top: 24px;
+
+    .btn {
+      position: relative;
+      top: 0;
+      box-sizing: border-box;
+      width: 34px;
+      height: 34px;
+      font-size: 16px;
+      line-height: 34px;
+      text-align: center;
+      cursor: pointer;
+      background: var(--art-main-bg-color);
+      border-radius: calc(var(--custom-radius) / 2.5 + 0px) !important;
+
+      &:hover ul {
+        display: inline;
+      }
+
+      &.history {
+        color: #666;
+      }
+    }
+  }
+}
+
+.dark {
+  .tabs {
+    li {
+      i {
+        &:hover {
+          background: rgb(238 238 238 / 10%) !important;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: $device-ipad) {
+  .worktab {
+    padding: 0 10px;
+  }
+}
+
+@media only screen and (max-width: $device-phone) {
+  .worktab {
+    padding: 0 15px;
+  }
+}

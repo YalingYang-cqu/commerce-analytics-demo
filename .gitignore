@@ -1,0 +1,31 @@
+node_modules
+.DS_Store
+dist
+dist-single
+dist-ssr
+*.local
+.cursorrules
+
+# Env / secrets — never push
+.env
+.env.*
+!.env.example
+
+# Nested accidental clone / archives
+/Cost/
+dist.zip
+
+# Auto-generated files
+src/types/auto-imports.d.ts
+src/types/components.d.ts
+.auto-import.json
+
+claude.md
+.claude
+.specify
+specs/
+docs/
+yarn.lock
+package-lock.json
+.cursor/
+.idea

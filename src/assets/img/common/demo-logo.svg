@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="40" viewBox="0 0 120 40" role="img" aria-labelledby="title">
+  <title id="title">Data Demo</title>
+  <rect width="40" height="40" rx="10" fill="#2563eb"/>
+  <path d="M11 29V18h4v11h-4zm7 0V11h4v18h-4zm7 0V15h4v14h-4z" fill="#fff"/>
+  <text x="48" y="25" fill="#1f2937" font-family="Arial, sans-serif" font-size="15" font-weight="700">DATA DEMO</text>
+</svg>

@@ -1,0 +1,37 @@
+{
+  "id": "",
+  "name": "",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "16921551",
+      "name": "清除",
+      "font_class": "qingchu",
+      "unicode": "e7e9",
+      "unicode_decimal": 59369
+    },
+    {
+      "icon_id": "33529635",
+      "name": "悬浮-固定",
+      "font_class": "xuanfu-guding",
+      "unicode": "e687",
+      "unicode_decimal": 59015
+    },
+    {
+      "icon_id": "34428713",
+      "name": "取消固定",
+      "font_class": "quxiaoguding",
+      "unicode": "e507",
+      "unicode_decimal": 58631
+    },
+    {
+      "icon_id": "40350275",
+      "name": "arrow_向上置顶",
+      "font_class": "arrow_xiangshangzhiding",
+      "unicode": "e989",
+      "unicode_decimal": 59785
+    }
+  ]
+}
